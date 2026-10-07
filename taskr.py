@@ -2,7 +2,7 @@ import json
 import sys
 from pathlib import Path
 
-DB = Path("tasks.json")
+DB = Path(__file__).with_name("tasks.json")
 
 
 def load():
