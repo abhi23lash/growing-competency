@@ -23,7 +23,10 @@ def add(title):
 
 
 def list_tasks():
-    for i, t in enumerate(load(), 1):
+    tasks = load()
+    if not tasks:
+        print("No tasks yet.")
+    for i, t in enumerate(tasks, 1):
         print(f"{i}. {t['title']}")
 
 
