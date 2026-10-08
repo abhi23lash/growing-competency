@@ -22,6 +22,13 @@ def add(title):
     print(f"Added: {title}")
 
 
+def delete(number):
+    tasks = load()
+    removed = tasks.pop(number - 1)
+    save(tasks)
+    print(f"Deleted: {removed['title']}")
+
+
 def list_tasks():
     tasks = load()
     if not tasks:
@@ -34,5 +41,7 @@ if __name__ == "__main__":
     cmd, *args = sys.argv[1:] or ["list"]
     if cmd == "add":
         add(" ".join(args))
+    elif cmd == "delete":
+        delete(int(args[0]))
     else:
         list_tasks()
