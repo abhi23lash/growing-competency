@@ -22,17 +22,27 @@ def add(title):
     print(f"Added: {title}")
 
 
+def done(number):
+    tasks = load()
+    tasks[number - 1]["done"] = True
+    save(tasks)
+    print(f"Completed: {tasks[number - 1]['title']}")
+
+
 def list_tasks():
     tasks = load()
     if not tasks:
         print("No tasks yet.")
     for i, t in enumerate(tasks, 1):
-        print(f"{i}. {t['title']}")
+        mark = "x" if t["done"] else " "
+        print(f"{i}. [{mark}] {t['title']}")
 
 
 if __name__ == "__main__":
     cmd, *args = sys.argv[1:] or ["list"]
     if cmd == "add":
         add(" ".join(args))
+    elif cmd == "done":
+        done(int(args[0]))
     else:
         list_tasks()
