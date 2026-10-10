@@ -27,6 +27,11 @@ def done(number):
     tasks[number - 1]["done"] = True
     save(tasks)
     print(f"Completed: {tasks[number - 1]['title']}")
+def delete(number):
+    tasks = load()
+    removed = tasks.pop(number - 1)
+    save(tasks)
+    print(f"Deleted: {removed['title']}")
 
 
 def list_tasks():
@@ -44,5 +49,7 @@ if __name__ == "__main__":
         add(" ".join(args))
     elif cmd == "done":
         done(int(args[0]))
+    elif cmd == "delete":
+        delete(int(args[0]))
     else:
         list_tasks()
